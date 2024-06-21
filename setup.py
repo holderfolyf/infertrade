@@ -22,6 +22,7 @@ infertrade setup.py file
 import re
 
 from os import walk
+from os.path import dirname, abspath, join
 from pathlib import Path
 
 # Third library (not InferStat)
@@ -32,7 +33,7 @@ PROJECT_NAME = "infertrade"
 PROJECT_DESCRIPTION = "Pandas and SciKit Learn compatible open source interface for algorithmic trading functions."
 BLACKLIST_DIRS = ["example_scripts"]
 
-this_directory = Path(__file__).cwd()
+this_directory = Path(dirname(abspath(__file__)))
 
 
 def get_long_description(filename: str = "README.md") -> str:
@@ -55,9 +56,10 @@ def get_pkg_list(requirement_file: str) -> list:
 
 def get_version(filename: str = "_version.py") -> str:
     """Returns the package version number as a string by searching and reading the _version.py file."""
-    for dirpath, _, filenames in walk(".", topdown=True):
+    gitignore = []
+    for dirpath, _, filenames in walk(this_directory):
         if ".gitignore" in filenames:
-            with open(".gitignore") as _f:
+            with open(join(this_directory, ".gitignore")) as _f:
                 gitignore = [file.strip() for file in _f.readlines() if not re.search(r"\#|\*", file)]
 
         if any(pattern for pattern in gitignore + BLACKLIST_DIRS if re.search(pattern, dirpath)):
@@ -96,13 +98,14 @@ setup(
     install_requires=package_requirements,
     extras_require={"dev": dev_requirements},
     tests_require=["pytest"],
-    python_requires=">=3.7.0",
+    python_requires=">=3.7.0,<3.10.0",
     classifiers=[
         "License :: OSI Approved :: Apache Software License",
         "Development Status :: 2 - Pre-Alpha",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
+        "Operating System :: OS Independent",
         "Intended Audience :: Developers",
         "Intended Audience :: Financial and Insurance Industry",
         "Intended Audience :: Information Technology",

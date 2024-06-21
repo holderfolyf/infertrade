@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{tocloft}
+\include{common_symbols_and_format}
+\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+
+
+\begin{document}
+\logo
+\rulename{Exponential Moving Average Trading Rule} %Argument is name of rule
+\tblofcontents
+
+\ruledescription{Exponential Moving Average (EMA) is a type of moving average similar to simple moving average, but it reduce the lag by applying more weight to recent prices. The weighting applied varies depending on the number of periods use in the moving average.
+                Traders used this more to get a clearer view of the most recent price change of an asset.}
+
+\section{Equation}
+\begin{equation}
+    EMA_{\currenttime} = \Big(V_{\currenttime} * \Big(\frac{S}{1 + \lookbacklength}\Big)\Big) + EMA_{\currenttime-1} * \Big(1-\frac{S}{1 + \lookbacklength}\Big)
+\end{equation}
+\\
+
+where: \\
+
+$EMA$ is exponentially weighted moving average. \\
+
+$V_{\currenttime}$ is current stock value. \\
+
+$\lookbacklength$ \ is look back length. \\
+
+$S$ is the smoothing factor.
+
+
+\ruleparameters
+{Window size}{50}{This is the number of time steps over which exponential contributions are sourced.}{$\lookbacklength$}
+{Smoothing Factor}{2}{Smoothing factor represents the weighting applied to the most recent period’s value.}{$S$}
+\stoptable
+
+\keyterms
+\furtherlinks
+
+\end{document}

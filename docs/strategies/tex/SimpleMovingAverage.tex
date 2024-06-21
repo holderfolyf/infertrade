@@ -1,0 +1,35 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\input{common_symbols_and_format.tex}
+
+
+\begin{document}
+\logo
+\rulename{Simple Moving Averages}
+\tblofcontents
+
+\ruledescription{
+A simple moving average (SMA) is a technical indicator used by most traders to identify the trend of an asset. It calculates the average of a selected range of prices, usually closing prices, by the number of periods in that range. A crossover is usually used by traders as a signal to buy and sell. It is considered bullish when the SMA cross below the price of an asset and considered bearish when the SMA cross above the price of an asset.}
+
+\howtotrade
+The strategy is to identify bullish and bearish crossovers. \\
+Bullish Crossover: when SMA cross below the asset price. \\
+Bearish Crossover: when SMA cross above the asset price.
+
+\ruleparameters
+{Window size}{20}{This is the number of time steps over which contributions are sourced}{$\lookbacklength$}
+\stoptable
+\section{Equation}
+\begin{equation}
+    SMA = \frac{1}{\lookbacklength} \sum_{n=0}^{\lookbacklength} \price_{t-n}
+\end{equation}
+
+where $\price_\currenttime$ is the price at time $\currenttime$,
+
+\keyterms
+\furtherlinks %The footer
+\end{document}

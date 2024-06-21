@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage{tocloft}
+\include{common_symbols_and_format}
+\renewcommand{\cfttoctitlefont}{\Large\bfseries}
+
+\begin{document}
+\logo
+\rulename{Relative Strength Index} %Argument is name of rule
+\tblofcontents
+
+\ruledescription{The Relative Strength Index (RSI), developed by J. Welles Wilder, is a momentum indicator that measures the speed and change of price movements. It is an extremely popular indicator that is used to indicate overbought and oversold signals. RSI is considered overbought when above 70 and oversold when below 30. RSI can also be used to identify the general trend of an asset.
+                It can also be used for identifying bullish and bearish divergences.}
+\ruleparameters %You can include however many arguments (in groups of 4) as you want!
+{Overbought}{70}{Overbought Condition}{$O_b$}
+{Oversold}{30}{Oversold Condition}{$O_s$}
+{Time Length}{14 Days}{Time frame on which the RSI is calculated}{$L$}
+\stoptable %must be included or Tex engine runs infinitely
+
+
+\section{Equation}
+Below are the equations which govern how this specific trading rule calculates a trading position.
+
+\begin{equation}
+RSI = 100-\frac{100}{(1+RS)}
+\end{equation}
+\\
+with:
+
+$RSI$: is the relative strength index at $\currenttime$
+
+$RS$: is the relative strength which is calculated using below formula.
+
+\begin{equation}
+RS = \frac{AvgU}{AvgD}
+\end{equation}
+\\
+with:
+
+$AvgU$ : average of all upward movements in the last $L$ price bars
+
+$AvgD$ : average of all downward movements in the last $L$ price bars
+
+$\L$ : Time Length
+
+\keyterms
+\furtherlinks %The footer
+\end{document}
